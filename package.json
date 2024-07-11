@@ -1,12 +1,12 @@
 {
   "name": "backend-twistynetwork",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Backend feito para a rede de servidores de minecraft TwistyNetwork",
+  "author": "Fabrcicio Aquiles",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "build": "prisma generate && prisma migrate reset init && nest build",
+    "build": "prisma generate && prisma migrate save --experimental --create-db --name 'init' && prisma migrate up --experimental && nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
@@ -18,7 +18,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma migrate up"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
