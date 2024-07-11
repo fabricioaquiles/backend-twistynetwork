@@ -6,7 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "build": "prisma generate && prisma migrate save --experimental --create-db --name 'init' && prisma migrate up --experimental && nest build",
+    "build": "prisma generate && prisma migrate save --experimental --create-db --name 'init' && && nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
