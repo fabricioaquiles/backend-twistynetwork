@@ -25,8 +25,8 @@ export class ProductsController {
   @Get()
   @IsPublic()
   findAll(
-    @Query('filterField') filterField?: string,
-    @Query('filterValue') filterValue?: string,
+    @Query('filterField') filterField: string,
+    @Query('filterValue') filterValue: string,
   ) {
     if (filterField == null || filterValue == null) {
       return this.productsService.findAll();
