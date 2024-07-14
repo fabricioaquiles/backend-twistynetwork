@@ -21,7 +21,7 @@ export class ProductsService {
 
   findAllFilter(filterField: string, filterValue: string) {
     return this.prismaService.$queryRaw`
-    SELECT * FROM Products
+    SELECT * FROM "public"."Products"
     WHERE ${filterField} = ${filterValue}
     ORDER BY id DESC;
     `;
