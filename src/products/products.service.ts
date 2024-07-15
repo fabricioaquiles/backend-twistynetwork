@@ -23,11 +23,11 @@ export class ProductsService {
     const tableName = process.env.DATABASE_URL.startsWith('postgresql://')
       ? 'public.Products'
       : 'Products';
-    return this.prismaService.$queryRaw`
-    SELECT * FROM ${tableName}
-    WHERE category LIKE 'vips'
-    ORDER BY id DESC;
-    `;
+    return this.prismaService.$queryRawUnsafe(
+      'SELECT * FROM $1 WHERE category = $2 ORDER BY id DESC;',
+      tableName,
+      'vips',
+    );
   }
 
   findOne(id: number) {
