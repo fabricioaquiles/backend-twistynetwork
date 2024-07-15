@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
@@ -20,9 +21,8 @@ export class ProductsService {
   }
 
   findAllFilter(filterField: string, filterValue: string) {
-    return this.prismaService.$queryRawUnsafe(
-      `SELECT * FROM "Products" WHERE "${filterField}" = '${filterValue}' ORDER BY id DESC;`,
-    );
+    const query: any = Prisma.sql`SELECT * FROM "Products" WHERE "${filterField}" = '${filterValue}' ORDER BY id DESC;`;
+    return this.prismaService.$queryRawUnsafe(query);
   }
 
   findOne(id: number) {
