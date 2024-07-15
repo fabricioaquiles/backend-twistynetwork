@@ -32,7 +32,7 @@ export class ProductsController {
       return this.productsService.findAll();
     }
 
-    return this.productsService.findAllFilter();
+    return this.productsService.findAllFilter(filterField, filterValue);
   }
 
   @IsPublic()

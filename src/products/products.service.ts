@@ -19,14 +19,11 @@ export class ProductsService {
     return this.prismaService.products.findMany({ orderBy: { id: 'desc' } });
   }
 
-  findAllFilter() {
-    // const tableName = process.env.DATABASE_URL.startsWith('postgresql://')
-    //   ? 'public.Products'
-    //   : 'Products';
+  findAllFilter(filterField: string, filterValue: string) {
     return this.prismaService.$queryRawUnsafe(
-      'SELECT * FROM "Products" WHERE category = "$1" ORDER BY id DESC;',
-      // tableName,
-      'vips',
+      `SELECT * FROM "Products" WHERE "$1" = '$2' ORDER BY id DESC;`,
+      filterField,
+      filterValue,
     );
   }
 
