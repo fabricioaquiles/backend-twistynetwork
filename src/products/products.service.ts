@@ -20,10 +20,13 @@ export class ProductsService {
   }
 
   findAllFilter(filterField: string, filterValue: string) {
+    const tableName = process.env.DATABASE_URL.startsWith('postgresql://')
+      ? 'public.Products'
+      : 'Products';
     return this.prismaService.$queryRaw`
-    SELECT * FROM "public"."Products"
-    WHERE ${filterField} = ${filterValue}
-    ORDER BY id DESC;
+    SELECT * FROM ${tableName} AS "Products"
+    WHERE "Products".${filterField} = ${filterValue}
+    ORDER BY "Products"."id" DESC;
     `;
   }
 
