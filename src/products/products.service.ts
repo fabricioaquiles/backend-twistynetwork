@@ -21,9 +21,9 @@ export class ProductsService {
 
   findAllFilter(filterField: string, filterValue: string) {
     return this.prismaService.$queryRawUnsafe(
-      `SELECT * FROM "Products" WHERE $1 = '$2' ORDER BY id DESC;`,
+      `SELECT * FROM "Products" WHERE $1 = $2 ORDER BY id DESC`,
       filterField,
-      filterValue,
+      `'${filterValue}'`,
     );
   }
 
