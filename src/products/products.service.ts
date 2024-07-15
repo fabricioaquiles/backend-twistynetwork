@@ -20,12 +20,12 @@ export class ProductsService {
   }
 
   findAllFilter() {
-    const tableName = process.env.DATABASE_URL.startsWith('postgresql://')
-      ? 'public.Products'
-      : 'Products';
+    // const tableName = process.env.DATABASE_URL.startsWith('postgresql://')
+    //   ? 'public.Products'
+    //   : 'Products';
     return this.prismaService.$queryRawUnsafe(
-      'SELECT * FROM $1 WHERE category = $2 ORDER BY id DESC;',
-      tableName,
+      'SELECT * FROM "public.Products" WHERE category = "$1" ORDER BY id DESC;',
+      // tableName,
       'vips',
     );
   }
