@@ -19,14 +19,14 @@ export class ProductsService {
     return this.prismaService.products.findMany({ orderBy: { id: 'desc' } });
   }
 
-  findAllFilter(filterField: string, filterValue: string) {
+  findAllFilter() {
     const tableName = process.env.DATABASE_URL.startsWith('postgresql://')
       ? 'public.Products'
       : 'Products';
     return this.prismaService.$queryRaw`
-    SELECT * FROM ${tableName} AS "Products"
-    WHERE "Products".${filterField} = ${filterValue}
-    ORDER BY "Products"."id" DESC;
+    SELECT * FROM ${tableName}
+    WHERE category = vips
+    ORDER BY id DESC;
     `;
   }
 
