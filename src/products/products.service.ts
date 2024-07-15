@@ -25,7 +25,7 @@ export class ProductsService {
       : 'Products';
     return this.prismaService.$queryRaw`
     SELECT * FROM ${tableName}
-    WHERE category = vips
+    WHERE category = "vips"
     ORDER BY id DESC;
     `;
   }
