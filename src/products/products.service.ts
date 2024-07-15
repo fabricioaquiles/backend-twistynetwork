@@ -24,7 +24,7 @@ export class ProductsService {
     //   ? 'public.Products'
     //   : 'Products';
     return this.prismaService.$queryRawUnsafe(
-      'SELECT * FROM "public.Products" WHERE category = "$1" ORDER BY id DESC;',
+      'SELECT * FROM "Products" WHERE category = "$1" ORDER BY id DESC;',
       // tableName,
       'vips',
     );
