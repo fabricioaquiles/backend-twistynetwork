@@ -6,7 +6,6 @@ import {
   Param,
   Patch,
   Post,
-  Query,
 } from '@nestjs/common';
 import { IsPublic } from 'src/auth/decorators/is-public.decorator';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -24,15 +23,14 @@ export class ProductsController {
 
   @Get()
   @IsPublic()
-  findAll(
-    @Query('filterField') filterField: string,
-    @Query('filterValue') filterValue: string,
-  ) {
-    if (filterField == null || filterValue == null) {
-      return this.productsService.findAll();
-    }
+  findAll() {
+    return this.productsService.findAll();
+  }
 
-    return this.productsService.findAllFilter(filterField, filterValue);
+  @Get('/:column/:data')
+  @IsPublic()
+  findAllFilter(@Param('column') column: string, @Param('data') data: string) {
+    return this.productsService.findAllFilter(column, data);
   }
 
   @IsPublic()

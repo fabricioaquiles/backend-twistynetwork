@@ -19,9 +19,9 @@ export class ProductsService {
     return this.prismaService.products.findMany({ orderBy: { id: 'desc' } });
   }
 
-  findAllFilter(filterField: string, filterValue: string) {
+  findAllFilter(column: string, data: string) {
     return this.prismaService.$queryRawUnsafe(
-      `SELECT * FROM "Products" WHERE ${filterField} = '${filterValue}' ORDER BY id DESC`,
+      `SELECT * FROM "Products" WHERE ${column} = '${data}' ORDER BY id DESC`,
     );
   }
 
